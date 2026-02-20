@@ -8,7 +8,7 @@ Lightroom plugin that finds duplicates by metadata.
 2. Unzip `teekesselchen-citron-f-1.9.1.zip` to `teekesselchen-citron-f.lrplugin`
 3. Start Lightroom Classic
 4. Open the Plug-In Manager from the menue (_File > Plug-In Manager..._)
-5. Click on Add and browse to unzipped `teekesslechen.lrplugin`
+5. Click on Add and browse to unzipped `teekesselchen-citron-f.lrplugin`
 6. Done
 
 # Usage
