@@ -666,7 +666,10 @@ local function showFindDuplicatesDialog()
 							title = "Copyright (C) 2021  Michael Bungenstock",
 						},
 						f:static_text {
-							title = "Contact: michael@bungenstock.de",
+							title = "Copyright (C) 2026  citron-f",
+						},
+						f:static_text {
+							title = "Support & issues: https://github.com/citron-f/teekesselchen/issues"
 						},
 						-- f:static_text {
 						-- 	title = "This program comes with ABSOLUTELY NO WARRANTY",

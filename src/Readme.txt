@@ -1,4 +1,4 @@
-Teekesselchen V1.9
+Teekesselchen V1.9.1
 ==================
 Please refer to http://www.bungenstock.de/teekesselchen/ to get more information and
 documentation.
@@ -12,7 +12,7 @@ Installation
 4. Click on the Add button in the lower left corner and browse to extracted teekesselchen.lrplugin
 6. Click on Done and your are done
 
-Documentation
+Original Documentation
 -------------
 
 Tutorial http://www.bungenstock.de/teekesselchen/doc/v1_1/en/tutorial.php
@@ -20,5 +20,5 @@ Plug-in  http://www.bungenstock.de/teekesselchen/doc/v1_1/en/summary.php
 
 License
 ----------
-Open the tab "About" in the plug-in
+Open the tab "About" in the plug-in and original license page
 (http://www.bungenstock.de/teekesselchen/doc/v1_6/en/about.php).

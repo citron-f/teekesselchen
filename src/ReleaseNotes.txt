@@ -1,6 +1,6 @@
 Release Notes
 
-V1.9.1 released on 17th of May 2021
+V1.9.1 released on 20th of Feb 2026
 Bug fix:
 - Fixed sorting rule evaluation when both images match a format rule (i.e. RAW, DNG, HEIC). The next enabled rule is now evaluated correctly by citron-f
 

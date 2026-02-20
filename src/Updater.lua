@@ -18,7 +18,7 @@
  
 --------------------------------------------------------------------------------
 
-Updater.lua
+Updater.lua (citron-f fork): check GitHub Releases
 
 ------------------------------------------------------------------------------]]
 
@@ -32,38 +32,43 @@ function Updater.new()
 	self.info = {}
 	
 	function self.getInfo()
-		local body, headers = LrHttp.get("http://www.bungenstock.de/teekesselchen/update.php", nil, 5)
+
+		local body, headers = LrHttp.get("https://api.github.com/repos/citron-f/teekesselchen/releases/latest", nil, 5)
 		local status = headers["status"]
 		self.info = {}
-		if status == 200 then
-			for k, v in string.gmatch(body, "%s*(.-)%s*=%s*(.-)%s*[\n,$]") do
-   				self.info[k] = v
- 			end
- 			return true
+		if status == 200 and body then
+			-- Parse GitHub JSON
+			local tag  = string.match(body, '"tag_name"%s*:%s*"([^"]+)"')
+			local page = string.match(body, '"html_url"%s*:%s*"([^"]+)"')
+			if tag and page then
+				self.info["currentVersion"] = string.gsub(tag, "^v", "")
+				self.info["showUrl"] = page
+				return true
+			end
 		end
 		return false
 	end
 	
 	function self.getVersion()
-		local result = 0
 		local cv = self.info["currentVersion"]
-		if cv then
-			local cvn = tonumber(cv)
-			if cvn then result = cvn end
+		if not cv then return 0 end
+		local a,b,c = string.match(cv, "(%d+)%.(%d+)%.(%d+)")
+		if a and b and c then
+			return tonumber(a)*10000 + tonumber(b)*100 + tonumber(c)
 		end
-		return result
+		return 0
 	end
 	
 	function self.getVersionStr()
 		return self.info["currentVersion"]
 	end
 	
+	
 	function self.getUrl()
-		local result = "http://www.bungenstock.de"
+		local result = "https://github.com/citron-f/teekesselchen/releases/latest"
 		local sUrl = self.info["showUrl"]
 		if sUrl then result = sUrl end
 		return result
 	end
-	
 	return self
 end

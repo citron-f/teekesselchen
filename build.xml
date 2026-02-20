@@ -7,6 +7,11 @@
   	<property name="dist"  location="dist"/>
   	<property name="plugin-dev" location="build/teekesselchen.lrdevplugin"/>
     <property name="plugin-dist" location="dist/teekesselchen.lrplugin"/>
+
+	<!-- Fork release naming (change version once here) -->
+	<property name="plugin.name" value="Teekesselchen"/>
+	<property name="plugin.version" value="1_9_1"/>
+	<property name="release.name" value="${plugin.name} V${plugin.version}"/>
     
     <condition property="isMac">
 		<os family="mac" />
@@ -33,21 +38,21 @@
     		<fileset dir="${plugin-dev}"/>
   		</copy>
   		<chmod file="${plugin-dist}/exiftool" perm="u+x" />
-  		<zip destfile="${dist}/Teekesselchen V1_8.zip">
+  		<zip destfile="${dist}/${release.name}.zip">
   			<fileset dir="${dist}">
   				<include name="*.lrplugin/**" />
   			</fileset>
   		</zip>
-  		<checksum file="${dist}/Teekesselchen V1_8.zip" algorithm="MD5" format="MD5SUM"/>
-  		<checksum file="${dist}/Teekesselchen V1_8.zip" algorithm="SHA-1" format="MD5SUM"/>
+  		<checksum file="${dist}/${release.name}.zip" algorithm="MD5" format="MD5SUM"/>
+  		<checksum file="${dist}/${release.name}.zip" algorithm="SHA-1" format="MD5SUM"/>
   	</target>
   	
   	<target name="installer" depends="dist" description="creates an installer for mac" >
   		<exec executable="/Applications/PackageMaker.app/Contents/MacOS/PackageMaker">
-  			<arg line="--doc mac/teekesselchen.pmdoc --out '${dist}/Teekesselchen V1_8.pkg'" />
+  			<arg line="--doc mac/teekesselchen.pmdoc --out '${dist}/${release.name}.pkg'" />
   		</exec>
-  		<checksum file="${dist}/Teekesselchen V1_8.pkg" algorithm="MD5" format="MD5SUM"/>
-  		<checksum file="${dist}/Teekesselchen V1_8.pkg" algorithm="SHA-1" format="MD5SUM"/>
+  		<checksum file="${dist}/${release.name}.pkg" algorithm="MD5" format="MD5SUM"/>
+  		<checksum file="${dist}/${release.name}.pkg" algorithm="SHA-1" format="MD5SUM"/>
     </target>
     
     <target name="checksum" depends="dist" description="creates checksums for windows" >

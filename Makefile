@@ -1,8 +1,12 @@
-DISTRIBUTOR := teekesselchen
+PLUGIN      := teekesselchen
+FORK        := citron-f
+VERSION     := 1.9.1
+
+DISTRIBUTOR := $(PLUGIN)-$(FORK)
 BUILD       := $(DISTRIBUTOR).lrplugin
 DIST        := dist
 
-ZIP         := $(DIST)/$(DISTRIBUTOR).zip
+ZIP         := $(DIST)/$(DISTRIBUTOR)-$(VERSION).zip
 SHA         := $(ZIP).sha256
 
 .PHONY: clean build distribution
