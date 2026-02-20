@@ -35,6 +35,14 @@ local LrHttp	 = import "LrHttp"
 require "Teekesselchen"
 require "Updater"
 
+local Info = require "Info"
+
+local function getVersionString()
+    local v = Info.VERSION
+    return string.format("%d.%d.%d", v.major, v.minor, v.revision)
+end
+
+
 local license = "This program is free software: you can redistribute it and/or modify " ..
 	"it under the terms of the GNU General Public License as published by " ..
 	"the Free Software Foundation, either version 3 of the License, or " ..
@@ -652,7 +660,7 @@ local function showFindDuplicatesDialog()
 						fill_horizontal = 1,
 						spacing = f:control_spacing(),
 						f:static_text {
-							title = "Teekesselchen v1.9.0",
+							title = "Teekesselchen v" .. getVersionString(),
 						},
 						f:static_text {
 							title = "Copyright (C) 2021  Michael Bungenstock",
@@ -731,7 +739,7 @@ local function showFindDuplicatesDialog()
 			}
 			
 			local result = LrDialogs.presentModalDialog({
-				title = "Teekesselchen v1.9.0: Find Duplicates",
+				title = "Teekesselchen v" .. getVersionString() .. ": Find Duplicates",
 				contents = contents,
 				actionVerb = "Find Duplicates",
 				otherVerb = "Save",

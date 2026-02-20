@@ -1,5 +1,13 @@
 Release Notes
 
+V1.9.1 released on 17th of May 2021
+Bug fix:
+- Fixed sorting rule evaluation when both images match a format rule (i.e. RAW, DNG, HEIC). The next enabled rule is now evaluated correctly by citron-f
+
+Improvements:
+- Version display in the Dialog and About tab is now read automatically from Info.lua.
+- Improved Makefile for build and distribution.
+
 V1.9.0 released on 17th of May 2021
 Updates:
 - Added HEIC support
