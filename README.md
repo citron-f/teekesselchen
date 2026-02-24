@@ -1,6 +1,7 @@
 # teekesselchen
 
 Lightroom plugin that finds duplicates by metadata.
+This branch (citron-f-release) contains a bug fix: Fixed sorting rule evaluation when both images match a format rule (i.e. RAW, DNG, HEIC). The next enabled rule is now evaluated correctly.
 
 # Installation
 
