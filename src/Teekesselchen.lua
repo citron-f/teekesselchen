@@ -83,52 +83,67 @@ local function insertFlaggedPhoto(tree,photo,flag,label)
 	table.insert(tree, photo)
 end
 
-local function preferRAW(tree,photo,flag,label)
-	local header = tree[2]
-	local headMatch = header:getRawMetadata("fileFormat") == "RAW"
-	local photoMatch = photo:getRawMetadata("fileFormat") == "RAW"
-	if headMatch then
-		insertFlaggedPhoto(tree,photo,flag,label)
-		return true
-	else
-		if photoMatch then
-			changeOrder(tree,photo,flag,label)
-			return true
-		end
-	end
-	return false
+local function preferRAW(tree, photo, flag, label)
+    local header = tree[2]
+    local headMatch  = header:getRawMetadata("fileFormat") == "RAW"
+    local photoMatch = photo:getRawMetadata("fileFormat") == "RAW"
+
+    -- Tie: both RAW or both not RAW -> do NOT decide here; allow next rule
+    if headMatch == photoMatch then
+        return false
+    end
+
+    -- Header is RAW, new is not -> keep header, reject new
+    if headMatch then
+        insertFlaggedPhoto(tree, photo, flag, label)
+        return true
+    end
+
+    -- New is RAW, header is not -> promote new to header
+    changeOrder(tree, photo, flag, label)
+    return true
 end
 
-local function preferDNG(tree,photo,flag,label)
-	local header = tree[2]
-	local headMatch = header:getRawMetadata("fileFormat") == "DNG" --@mno since I do not use RAW but DNG this works for me.
-	local photoMatch = photo:getRawMetadata("fileFormat") == "DNG" --@mno more elegant would be to check for both values.
-	if headMatch then
-		insertFlaggedPhoto(tree,photo,flag,label)
-		return true
-	else
-		if photoMatch then
-			changeOrder(tree,photo,flag,label)
-			return true
-		end
-	end
-	return false
+local function preferDNG(tree, photo, flag, label)
+    local header = tree[2]
+    local headMatch  = header:getRawMetadata("fileFormat") == "DNG"
+    local photoMatch = photo:getRawMetadata("fileFormat") == "DNG"
+
+    -- Tie: both RAW or both not RAW -> do NOT decide here; allow next rule
+    if headMatch == photoMatch then
+        return false
+    end
+
+    -- Header is RAW, new is not -> keep header, reject new
+    if headMatch then
+        insertFlaggedPhoto(tree, photo, flag, label)
+        return true
+    end
+
+    -- New is RAW, header is not -> promote new to header
+    changeOrder(tree, photo, flag, label)
+    return true
 end
 
-local function preferHEIC(tree,photo,flag,label)
-	local header = tree[2]
-	local headMatch = header:getRawMetadata("fileFormat") == "HEIC"
-	local photoMatch = photo:getRawMetadata("fileFormat") == "HEIC"
-	if headMatch then
-		insertFlaggedPhoto(tree,photo,flag,label)
-		return true
-	else
-		if photoMatch then
-			changeOrder(tree,photo,flag,label)
-			return true
-		end
-	end
-	return false
+local function preferHEIC(tree, photo, flag, label)
+    local header = tree[2]
+    local headMatch  = header:getRawMetadata("fileFormat") == "HEIC"
+    local photoMatch = photo:getRawMetadata("fileFormat") == "HEIC"
+
+    -- Tie: both RAW or both not RAW -> do NOT decide here; allow next rule
+    if headMatch == photoMatch then
+        return false
+    end
+
+    -- Header is RAW, new is not -> keep header, reject new
+    if headMatch then
+        insertFlaggedPhoto(tree, photo, flag, label)
+        return true
+    end
+
+    -- New is RAW, header is not -> promote new to header
+    changeOrder(tree, photo, flag, label)
+    return true
 end
 
 local function preferLarge(tree,photo,flag,label)

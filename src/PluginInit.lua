@@ -31,12 +31,18 @@ local LrLogger = import "LrLogger"
 require "Configuration"
 require "Updater"
 
-_G.CURRENT_VERSION = 1.9
+local Info = require "Info"
+
+_G.CURRENT_VERSION =
+	Info.VERSION.major * 10000 +
+	Info.VERSION.minor * 100 +
+	Info.VERSION.revision
+    
 _G.configuration = Configuration.new()
 -- Load configuration for this plugin
 local settings = _G.configuration.settings
 
-_G.logger = LrLogger("teekesselchen")
+_G.logger = LrLogger("teekesselchen-citron-f")
 _G.logger:enable("logfile")
 _G.logger:info("This is the teekesselchen plug-in")
 -- Shall I look for updates?
